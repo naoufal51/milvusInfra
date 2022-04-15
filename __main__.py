@@ -38,12 +38,12 @@ managed_node_group2 = eks.ManagedNodeGroup("managed-ng1",
                                            instance_types=["t2.medium"],
                                            labels={"ondemand": "true"},
                                            # tags={"org": "pulumi"},
-                                           taints={
-                                               "special": {
-                                                   "value": True,
-                                                   "effect": "NoSchedule"
-                                               }
-                                           },
+                                           # taints={
+                                           #     "special": {
+                                           #         "value": True,
+                                           #         "effect": "NoSchedule"
+                                           #     }
+                                           # },
                                            opts=pulumi.ResourceOptions(parent=cluster))
 
 
