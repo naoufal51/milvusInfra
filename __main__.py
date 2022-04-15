@@ -87,12 +87,12 @@ milvus_namespace = k8s.core.v1.Namespace(
 )
 
 
-# Install Traefik
-def _fix_status(obj: Any, opts: pulumi.ResourceOptions):
-    if obj.get("kind") == "CustomResourceDefinition":
-        # Remove offending parameter
-        del obj["status"]
-
+# # Install Traefik
+# def _fix_status(obj: Any, opts: pulumi.ResourceOptions):
+#     if obj.get("kind") == "CustomResourceDefinition":
+#         # Remove offending parameter
+#         del obj["status"]
+#
 
 # traefik = Chart(
 #     "traefik",
@@ -140,31 +140,31 @@ metrics_server = Chart(
     opts=pulumi.ResourceOptions(provider=provider)
 )
 
-milvus = Chart(
-    "milvus",
-    ChartOpts(
-        chart="milvus",
-        namespace=milvus_namespace.metadata.name,
-        values={
-            "cluster": {"enabled": False},
-            "etcd": {'replicaCount': 1},
-            "minio": {"mode": "standalone"},
-            "pulsar": {"enabled": False},
-            "standalone": {
-                "tolerations": {
-                    "key": "special",
-                    "operator": "Equal",
-                    "value": True,
-                    "effect": "NoSchedule"
-                }
-            }
-        },
-        fetch_opts=FetchOpts(
-            repo='https://milvus-io.github.io/milvus-helm/'
-        ),
-    ),
-    opts=pulumi.ResourceOptions(provider=provider)
-)
+# milvus = Chart(
+#     "milvus",
+#     ChartOpts(
+#         chart="milvus",
+#         namespace=milvus_namespace.metadata.name,
+#         values={
+#             "cluster": {"enabled": False},
+#             "etcd": {'replicaCount': 1},
+#             "minio": {"mode": "standalone"},
+#             "pulsar": {"enabled": False},
+#             "standalone": {
+#                 "tolerations": {
+#                     "key": "special",
+#                     "operator": "Equal",
+#                     "value": True,
+#                     "effect": "NoSchedule"
+#                 }
+#             }
+#         },
+#         fetch_opts=FetchOpts(
+#             repo='https://milvus-io.github.io/milvus-helm/'
+#         ),
+#     ),
+#     opts=pulumi.ResourceOptions(provider=provider)
+# )
 
 # traefik = Chart(
 #     "traefik",
