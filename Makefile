@@ -6,7 +6,7 @@ PULUMI_CMD=pulumi --non-interactive --stack $(STACK_NAME)
 
 install-deps:
 	curl -fsSL https://get.pulumi.com | sh
-	pip3 install -r infra/requirements.txt
+	pip3 install -r requirements.txt
 
 deploy:
 	$(PULUMI_CMD) stack init $(STACK_NAME) || true
