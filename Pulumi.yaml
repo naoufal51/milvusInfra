@@ -1,0 +1,6 @@
+name: MilvusInfra1
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Milvus Infra
